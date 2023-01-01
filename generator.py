@@ -1,4 +1,5 @@
 import errores
+import pyperclip
 #inicialización de variables
 hours = int()
 minutes = int()
@@ -11,10 +12,12 @@ colour = ""
 error = 0
 reason = errores.razon(error)
 #Funcion para verificar si el input es un numero o no.
+def copiar(hewwothere):
+    pyperclip.copy(hewwothere)
 def verificar_input(a):
     if a.isnumeric():
     # el input del usuario es un número
-        return
+        return()
     else:
     # el input del usuario no es un número, se genera excepción
         raise ValueError("value error")
@@ -114,7 +117,13 @@ else:
     if colour != 0 or colour != 1 or colour != 2 or colour != 3 or colour != 4:
         try:
             base = f"https://cd.twitch-countdown.com/countdown.html?title={title}&hours={hours}&minutes={minutes}&seconds={seconds}&color={colour}&font=Open%20Sans"
-            print(str(base),"\n\nenlace generado")
+            try:
+                copiar(base)
+            except:
+                error =1.6
+                print(base)
+
+            print(str(base),"\n\nenlace generado y copiado al portapapeles")
             input("oprima enter para continuar...")
         except:
             error = -1
@@ -126,9 +135,9 @@ else:
             input("oprima enter para continuar...")
     else:        
         error = 1.5
-        reason = "error en color"
+        reason = errores.razon(error)
         print("error!\n")
         print("codigo de error: \n",error)
-        print(f"error reason: \n",reason = errores.razon(error))
+        print(f"error reason: \nreason = errores.razon(error)")
         print("variables resultantes: ",str(hours,minutes,seconds,col))
         input("oprima enter para continuar...")
